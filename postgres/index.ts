@@ -17,9 +17,20 @@ async function main() {
     );
   `);
 
+await client.query(
+  "INSERT INTO users (name, email) VALUES ($1, $2) ON CONFLICT (email) DO NOTHING",
+  ["Kartik", "k@gmail.com"]
+);
+
+
   await client.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2)",
-    ["Kartik", "k@gmail.com"]
+    "INSERT INTO users (name,email) VALUES ($1,$2)",
+    ["DIj","DIJ@gmail.com"]
+  );
+
+  await client.query(
+    "INSERT INTO users (name,email) VALUES ($1,$2)",
+    ["Tomie","JunjiIto@gmail.com"]
   );
 
   const res = await client.query("SELECT * FROM users");
